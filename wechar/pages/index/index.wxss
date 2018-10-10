@@ -1,0 +1,278 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-body{width:100%}
+.container{padding-top:0rpx; }
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+
+
+
+/**index.wxss**/
+button {
+  margin-bottom: 30rpx;
+}
+
+button:last-child {
+  margin-bottom: 0;
+}
+
+.page-section-title {
+  padding: 0;
+}
+
+swiper {
+  height: 440rpx;
+}
+
+.swiper-item {
+  display: block;
+  height: 440rpx;
+}
+
+.swiper-item image {
+  width: 100%;
+  height: 440rpx;
+}
+
+.page-section-title {
+  margin-top: 60rpx;
+  position: relative;
+}
+
+.info {
+  position: absolute;
+  right: 0;
+  color: #353535;
+  font-size: 30rpx;
+}
+
+.flex-wrp {
+  margin-top: 10rpx;
+  display: flex;
+}
+
+.flex-item {
+  width: 200rpx;
+  height: 200rpx;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.flex-item  text {
+  width: 100%;
+  height: 20%;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  margin: 0px auto;
+}
+
+.flex-item-V {
+  margin: 0 auto;
+  width: 100%;
+  height: 50rpx;
+  display: block;
+  overflow: hidden;
+}
+
+.i10 {
+  height: 35rpx;
+  width: 40rpx;
+  float: left;
+  margin-left: 10px;
+}
+
+.scroll-view-box {
+  width: 85%;
+  float: left;
+  margin-left: 20rpx;
+  height: 200px;
+  text-align: left;
+}
+
+.scroll-view-item {
+  height: 50rpx;
+}
+
+.i1-4 {
+  height: 50%;
+  width: 50%;
+  margin: 0rpx auto;
+  float: default;
+}
+
+.swiper_container {
+  height: 55rpx;
+  width: 80vw;
+  float: left;
+  margin-left: 20rpx;
+}
+
+.swiper_item {
+  font-size: 25rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
+/*
+ inves list
+*/
+
+.invest-item {
+  width: 95%;
+  margin: 0rpx auto;
+  border-bottom: 1rpx solid #d1d1d1;
+  padding-bottom: 15rpx;
+  display: block;
+  overflow: hidden;
+  margin-bottom: 35rpx;
+}
+
+.invest-icon-text {
+  background: #508cee;
+  border: 1rpx solid #508cee;
+  border-radius: 30rpx;
+  color: #fff;
+  height: 35rpx;
+  width: 35rpx;
+  line-height: 35rpx;
+  text-align: center;
+  float: left;
+  font-size: 30rpx;
+}
+
+.invest-left {
+  width: 60%;
+  height: auto;
+  float: left;
+  overflow: hidden;
+  display: block;
+}
+
+.invest-right {
+  width:40%;
+  height: auto;
+  float: right;
+  overflow: hidden;
+  display: block;
+}
+
+.invest-title {
+  margin-left: 10rpx;
+  width: 80%;
+  height: 40rpx;
+  overflow: hidden;
+  float: left;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.invest-jd {
+  float: right;
+  padding-right: 25rpx;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  text-align: right;
+  color: #c69f39;
+}
+
+.invest-buy {
+  float: right;
+}
+button[size=mini].invest-canot-buy
+{
+ background: #c6c6c6;
+  float: right;
+
+}
+
+.mini-btn, button[size=mini] {
+  background: #ea6a47;
+  margin-right: 40rpx;
+}
+
+.invest-loan-p {
+  float: right;
+  margin-right: 30rpx;
+  text-align: right;
+  color: #666;
+  font-size: 30rpx;
+}
+
+.invest-rate {
+  margin-top: 40rpx;
+  font-size: 55rpx;
+  color: #fb7326;
+  display: block;
+  overflow: hidden;
+  float: left;
+  margin-left: 35rpx;
+}
+
+.invest-rate-b {
+  font-size: 30rpx;
+  float: left;
+  margin-top: 70rpx;
+  margin-left: 5rpx;
+  color: #fb7326;
+}
+
+.invest-rate-desc, .invest-limit-desc {
+  color: #666;
+  text-align: center;
+  font-size: 30rpx;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.invest-limit {
+  color: #333;
+  margin-left: 55rpx;
+  margin-top: 40rpx;
+  font-size: 55rpx;
+  float: left;
+}
+
+.invest-limit-type {
+  font-size: 30rpx;
+  float: left;
+  margin-top: 70rpx;
+  margin-left: 5rpx;
+}
+
+.indext_bottom image {
+  width: 85%;
+  height: 200rpx;
+  margin: 0rpx auto;
+}
+
+.indext_bottom {
+  text-align: center; 
+}
+
+
