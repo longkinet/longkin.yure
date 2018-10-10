@@ -1,3 +1,42 @@
+
+//服务接口配置
+const serverce = {
+  m_act_wonderful_list: 'longkin.invest.m_act_wonderful_list', //精彩活动
+  m_others_new_detial: "longkin.others.m_others_new_detial", //新闻详情
+  m_others_new_list: 'longkin.others.m_others_new_list', //新闻列表
+  m_invest_trade_list_index: 'longkin.invest.m_invest_trade_list_index', //首页项目列表
+  m_others_getservice_time: 'longkin.others.m_others_getservice_time',
+  m_invest_trade_detil: 'longkin.invest.m_invest_trade_detil'
+}
+
+//系统参数配置
+var systemPms = {
+  //request_time:"" apihelper.getDate("yyyyMMddHHmmssfff"),//请求时间
+  //sign_type: 'md5',//加密方式  
+  //partner_id: apihelper.systemConfig.partner_id
+  version: '3.6.5', //版本号
+  format: 'json', //获取返回数据格式
+}
+
+//API请求配置
+const systemConfig = {
+  posurl: "https://app.longkin.net", //post API 请求地址
+  SECURITYKEY: "longkin123!@#*", //密钥
+  partner_id: "17ab7302-6ba9-4c4e-ab48-9ff004951b41", //合作方ID
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 const apihelper = {
   //MD5加密
   getMD5: function(str) {
@@ -6,13 +45,12 @@ const apihelper = {
   //生成参数(最终调用串) (排序)  传入键对值参数
   SetPms: function(fields) {
     if (fields != undefined && fields != null) {
-
-      apihelper.systemPms = Object.assign(apihelper.systemPms, {
+      systemPms = Object.assign(systemPms, {
         request_time: apihelper.getDate("yyyyMMddHHmmssfff"), //请求时间
         plat_type: apihelper.getsys_tag(), //操作系统
-        partner_id: apihelper.systemConfig.partner_id
+        partner_id: systemConfig.partner_id
       });
-      fields = Object.assign(fields, apihelper.systemPms); //合并 参数 对象
+      fields = Object.assign(fields, systemPms); //合并 参数 对象
       fields = apihelper.objKeySort(fields); //按key排序
       var requestKeyValues = "";
       //组装待加密码串
@@ -22,7 +60,7 @@ const apihelper = {
         else
           requestKeyValues += '&' + item + '=' + fields[item]
       }
-      var encryptStr = apihelper.getMD5(requestKeyValues + apihelper.systemConfig.SECURITYKEY.toLowerCase()); //生成加密串
+      var encryptStr = apihelper.getMD5(requestKeyValues + systemConfig.SECURITYKEY.toLowerCase()); //生成加密串
       fields = Object.assign(fields, {
         sign_type: "md5",
         sign: encryptStr.toUpperCase()
@@ -36,35 +74,26 @@ const apihelper = {
         else
           KeyValues += '&' + item.toLowerCase() + '=' + fields[item]
       }
-      return apihelper.systemConfig.posurl + "?" + KeyValues;
+      return systemConfig.posurl + "?" + KeyValues;
     }
     return '';
   },
-  //获取 操作系统 1 IOS / 2 ANDROID
+  //获取 操作系统 1 IOS / 2 ANDROID 或其他
   getsys_tag: function() {
     var result = 2;
     wx.getSystemInfo({
       success: function(res) {
         var isIOS = !!res.model.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-        result = 1;
+        if (!isIOS)
+          isIOS = (res.model.toLowerCase().indexOf('iphone') >= 0);
+        if (isIOS)
+          result = 1;
       },
     })
     return result;
   },
-  //系统参数配置
-  systemPms: {
-    //request_time:"" apihelper.getDate("yyyyMMddHHmmssfff"),//请求时间
-    version: '3.6.5', //版本号
-    //sign_type: 'md5',//加密方式  
-    format: 'json', //获取返回数据格式
-    //  partner_id: apihelper.systemConfig.partner_id
-  },
-  //API请求配置
-  systemConfig: {
-    posurl: "https://app.longkin.net", //post API 请求地址
-    SECURITYKEY: "longkin123!@#*", //密钥
-    partner_id: "17ab7302-6ba9-4c4e-ab48-9ff004951b41",
-  },
+
+
   //时间格式转换
   getDate: function(str, date) {
     //获取当前时间戳  
@@ -141,7 +170,6 @@ const apihelper = {
 
 
 }
-
 
 /*  
  * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message  
@@ -363,16 +391,6 @@ function calcMD5(str) {
   return binl2hex(coreMD5(str2binl(str)))
 }
 
-
-
-const serverce = {
-  m_act_wonderful_list: 'longkin.invest.m_act_wonderful_list', //精彩活动
-  m_others_new_detial: "longkin.others.m_others_new_detial", //新闻详情
-  m_others_new_list: 'longkin.others.m_others_new_list', //新闻列表
-  m_invest_trade_list_index: 'longkin.invest.m_invest_trade_list_index', //首页项目列表
-  m_others_getservice_time: 'longkin.others.m_others_getservice_time',
-  m_invest_trade_detil: 'longkin.invest.m_invest_trade_detil'
-}
 
 module.exports = {
   hexMD5: hexMD5,

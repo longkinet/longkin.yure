@@ -7,4 +7,3 @@ width: 100%;display: block;
 overflow: hidden;
 
 }
-.container{padding-top:0rpx;}
