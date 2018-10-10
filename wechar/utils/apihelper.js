@@ -1,19 +1,19 @@
 const apihelper = {
   //MD5加密
-  getMD5: function (str) {
+  getMD5: function(str) {
     return hexMD5(str);
   },
   //生成参数(最终调用串) (排序)  传入键对值参数
-  SetPms: function (fields) {
+  SetPms: function(fields) {
     if (fields != undefined && fields != null) {
 
       apihelper.systemPms = Object.assign(apihelper.systemPms, {
-        request_time: apihelper.getDate("yyyyMMddHHmmssfff"),//请求时间
-        plat_type: apihelper.getsys_tag(),//操作系统
+        request_time: apihelper.getDate("yyyyMMddHHmmssfff"), //请求时间
+        plat_type: apihelper.getsys_tag(), //操作系统
         partner_id: apihelper.systemConfig.partner_id
       });
-      fields = Object.assign(fields, apihelper.systemPms);//合并 参数 对象
-      fields = apihelper.objKeySort(fields);//按key排序
+      fields = Object.assign(fields, apihelper.systemPms); //合并 参数 对象
+      fields = apihelper.objKeySort(fields); //按key排序
       var requestKeyValues = "";
       //组装待加密码串
       for (var item in fields) {
@@ -22,9 +22,12 @@ const apihelper = {
         else
           requestKeyValues += '&' + item + '=' + fields[item]
       }
-      var encryptStr = apihelper.getMD5(requestKeyValues + apihelper.systemConfig.SECURITYKEY.toLowerCase());//生成加密串
-      fields = Object.assign(fields, { sign_type: "md5", sign: encryptStr.toUpperCase() }); //并入 sign信息
-      fields = apihelper.objKeySort(fields);//再次按key排序
+      var encryptStr = apihelper.getMD5(requestKeyValues + apihelper.systemConfig.SECURITYKEY.toLowerCase()); //生成加密串
+      fields = Object.assign(fields, {
+        sign_type: "md5",
+        sign: encryptStr.toUpperCase()
+      }); //并入 sign信息
+      fields = apihelper.objKeySort(fields); //再次按key排序
       var KeyValues = '';
       //生成最终调用串
       for (var item in fields) {
@@ -38,10 +41,10 @@ const apihelper = {
     return '';
   },
   //获取 操作系统 1 IOS / 2 ANDROID
-  getsys_tag: function () {
+  getsys_tag: function() {
     var result = 2;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         var isIOS = !!res.model.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         result = 1;
       },
@@ -51,27 +54,25 @@ const apihelper = {
   //系统参数配置
   systemPms: {
     //request_time:"" apihelper.getDate("yyyyMMddHHmmssfff"),//请求时间
-    version: '3.6.5',//版本号
+    version: '3.6.5', //版本号
     //sign_type: 'md5',//加密方式  
-    format: 'json',//获取返回数据格式
+    format: 'json', //获取返回数据格式
     //  partner_id: apihelper.systemConfig.partner_id
   },
   //API请求配置
   systemConfig: {
-    posurl: "https://app.longkin.net",//post API 请求地址
-    SECURITYKEY: "longkin123!@#*",//密钥
+    posurl: "https://app.longkin.net", //post API 请求地址
+    SECURITYKEY: "longkin123!@#*", //密钥
     partner_id: "17ab7302-6ba9-4c4e-ab48-9ff004951b41",
   },
   //时间格式转换
-  getDate: function (str, date) {
+  getDate: function(str, date) {
     //获取当前时间戳  
     var timestamp = Date.parse(new Date());
     if (date != null && date != undefined && date != '') {
       try {
-        timestamp = Date.parse(date);//传入时间
-      }
-      finally {
-      }
+        timestamp = Date.parse(date); //传入时间
+      } finally {}
     }
     timestamp = timestamp / 1000;
     //console.log("当前时间戳为：" + timestamp);
@@ -79,7 +80,7 @@ const apihelper = {
     var n = timestamp * 1000;
     var date = new Date(n);
     //年  
-    var Y = date.getFullYear()+'';
+    var Y = date.getFullYear() + '';
 
 
     //月  
@@ -118,18 +119,18 @@ const apihelper = {
     if (str == 'yyyy-MM-dd')
       return Y + '-' + M + '-' + D;
   },
-  objKeySort: function (obj) {//排序的函数
+  objKeySort: function(obj) { //排序的函数
     var newkey = Object.keys(obj).sort();
     //先用Object内置类的keys方法获取要排序对象的属性名，再利用Array原型上的sort方法对获取的属性名进行排序，newkey是一个数组
-    var newObj = {};//创建一个新的对象，用于存放排好序的键值对
-    for (var i = 0; i < newkey.length; i++) {//遍历newkey数组
-      newObj[newkey[i]] = obj[newkey[i]];//向新创建的对象中按照排好的顺序依次增加键值对
+    var newObj = {}; //创建一个新的对象，用于存放排好序的键值对
+    for (var i = 0; i < newkey.length; i++) { //遍历newkey数组
+      newObj[newkey[i]] = obj[newkey[i]]; //向新创建的对象中按照排好的顺序依次增加键值对
     }
-    return newObj;//返回排好序的新对象
+    return newObj; //返回排好序的新对象
   },
- 
- 
-  getBody: function (content) {
+
+
+  getBody: function(content) {
     var REG_BODY = /<body[^>]*>([\s\S]*)<\/body>/;
     var result = REG_BODY.exec(content);
     if (result && result.length === 2)
@@ -173,15 +174,19 @@ function rol(num, cnt) {
 function cmn(q, a, b, x, s, t) {
   return safe_add(rol(safe_add(safe_add(a, q), safe_add(x, t)), s), b)
 }
+
 function ff(a, b, c, d, x, s, t) {
   return cmn((b & c) | ((~b) & d), a, b, x, s, t)
 }
+
 function gg(a, b, c, d, x, s, t) {
   return cmn((b & d) | (c & (~d)), a, b, x, s, t)
 }
+
 function hh(a, b, c, d, x, s, t) {
   return cmn(b ^ c ^ d, a, b, x, s, t)
 }
+
 function ii(a, b, c, d, x, s, t) {
   return cmn(c ^ (b | (~d)), a, b, x, s, t)
 }
@@ -338,22 +343,35 @@ function strw2binl(str) {
 /*  
  * External interface  
  */
-function hexMD5(str) { return binl2hex(coreMD5(str2binl(str))) }
-function hexMD5w(str) { return binl2hex(coreMD5(strw2binl(str))) }
-function b64MD5(str) { return binl2b64(coreMD5(str2binl(str))) }
-function b64MD5w(str) { return binl2b64(coreMD5(strw2binl(str))) }
+function hexMD5(str) {
+  return binl2hex(coreMD5(str2binl(str)))
+}
+
+function hexMD5w(str) {
+  return binl2hex(coreMD5(strw2binl(str)))
+}
+
+function b64MD5(str) {
+  return binl2b64(coreMD5(str2binl(str)))
+}
+
+function b64MD5w(str) {
+  return binl2b64(coreMD5(strw2binl(str)))
+}
 /* Backward compatibility */
-function calcMD5(str) { return binl2hex(coreMD5(str2binl(str))) }
+function calcMD5(str) {
+  return binl2hex(coreMD5(str2binl(str)))
+}
 
 
 
-const serverce= {
-  m_act_wonderful_list: 'longkin.invest.m_act_wonderful_list',//精彩活动
-    m_others_new_detial: "longkin.others.m_others_new_detial",//新闻详情
-      m_others_new_list: 'longkin.others.m_others_new_list',//新闻列表
-        m_invest_trade_list_index: 'longkin.invest.m_invest_trade_list_index',//首页项目列表
-          m_others_getservice_time: 'longkin.others.m_others_getservice_time',
-            m_invest_trade_detil: 'longkin.invest.m_invest_trade_detil'
+const serverce = {
+  m_act_wonderful_list: 'longkin.invest.m_act_wonderful_list', //精彩活动
+  m_others_new_detial: "longkin.others.m_others_new_detial", //新闻详情
+  m_others_new_list: 'longkin.others.m_others_new_list', //新闻列表
+  m_invest_trade_list_index: 'longkin.invest.m_invest_trade_list_index', //首页项目列表
+  m_others_getservice_time: 'longkin.others.m_others_getservice_time',
+  m_invest_trade_detil: 'longkin.invest.m_invest_trade_detil'
 }
 
 module.exports = {
