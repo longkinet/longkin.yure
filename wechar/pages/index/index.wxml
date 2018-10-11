@@ -4,7 +4,7 @@
     <!-- 活动 banner-->
     <view class="page-section page-section-spacing swiper">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{banners}}" wx:key="*this">
+        <block wx:for="{{banners}}" wx:key="*this.id">
           <swiper-item>
             <view class="swiper-item">
               <image data-title='{{item.title}}' data-link='{{item.link_url}}' bindtap='banner_gotolink' src='{{item.logofilepath}}'></image>
@@ -22,5 +22,9 @@
     </block>
   </view>
 
-
+  <view class='page-body'>
+    <view class="btn-area">
+      <button bindtap='paymentbtnclick' loading="{{loading}}" type="primary">支付</button>
+    </view>
+  </view>
 </view>

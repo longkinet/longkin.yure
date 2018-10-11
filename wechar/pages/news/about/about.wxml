@@ -1,8 +1,13 @@
 <import src="../../../wxParse/wxParse.wxml" /> 
+<import src="../../shared/foot/foot.wxml" />
+<import src="../../shared/head/head.wxml" />
+
 <view class="container">
+  <template is="head" />
   <view class="page-body"> 
     <view class="wxParse">
       <template is="wxParse" data="{{wxParseData:content.nodes}}" />
     </view>
   </view> 
+  <template is="foot" />
 </view>

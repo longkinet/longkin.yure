@@ -1,9 +1,11 @@
 @import "../../../wxParse/wxParse.wxss";
+@import "../../lib/weui.wxss";
 .newstitle{
 font-weight: bold;
 font-size: 40rpx;
 text-align: center;
-width: 100%;display: block;
+width: 100%;
+display: block;
 overflow: hidden;
 
 }

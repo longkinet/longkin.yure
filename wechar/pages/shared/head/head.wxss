@@ -1,0 +1,13 @@
+.head_box{
+  background-color:snow;
+  width: 100%;height: 25rpx;
+  overflow: hidden;
+  display: block;
+}
+.addres-left{
+width: 100rpx;
+background-color: black;
+color: white;
+height: 25rpx;
+line-height: 25rpx;
+}

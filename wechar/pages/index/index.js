@@ -1,8 +1,7 @@
 //index.js
-//获取应用实例
-const app = getApp()
-const util = require('../../utils/apihelper.js')
-var WxParse = require('../../wxParse/wxParse.js');
+//获取应用实例 
+var app = getApp();
+
 Page({
   data: {
     banners: {}, 
@@ -15,6 +14,14 @@ Page({
     interval: 2000,
     duration: 500
   },
+
+  /**
+   * 用户点击右上角分享 转发 事件
+  */
+  onShareAppMessage: function () {
+
+  }
+  ,
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
@@ -22,13 +29,15 @@ Page({
     })
   },
   onLoad: function () {
+    app.wxQuery.register(this);
     var self = this;
+
     /*
       加载首页精彩活动/banner 配置参数
     */
     var pms = {
-      service: util.serverce.m_act_wonderful_list,
-      pagesize: '2',
+      service: app.service.m_act_wonderful_list,
+      pagesize: '4',
       page: '1'
     };
 
@@ -36,7 +45,7 @@ Page({
     请求接口
     */
     wx.request({
-      url: util.apihelper.SetPms(pms), 
+      url: app.apihelper.SetPms(pms), 
       method: 'POST',
       header: {'content-type': 'application/json'},
       success: function (result) {
@@ -117,5 +126,8 @@ Page({
     this.setData({
       duration: e.detail.value
     })
+  },
+  paymentbtnclick:function(e){
+    wx.navigateTo({ url: "/pages/payment/pay/pay"});
   }
 })
