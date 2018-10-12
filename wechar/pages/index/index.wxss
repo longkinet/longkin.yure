@@ -274,5 +274,5 @@ button[size=mini].invest-canot-buy
 .indext_bottom {
   text-align: center; 
 }
-
+.btn-area{margin-top: 10rpx;}
 
